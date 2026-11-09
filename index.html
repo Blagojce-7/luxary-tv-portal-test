@@ -1,0 +1,231 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LUXARY TV · Device Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header>
+    <div class="brand">✦ LUXARY <span>TV</span></div>
+
+    <div class="language-selector">
+      <select id="lang" aria-label="Language">
+        <option value="en">English</option>
+        <option value="mk">Македонски</option>
+        <option value="sr">Balkan</option>
+      </select>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- LOGIN -->
+    <section id="login" class="panel login">
+
+      <div class="pill no-account" data-t="noaccount">
+        NO ACCOUNT REQUIRED
+      </div>
+
+      <h1 data-t="connect">Connect your device</h1>
+
+      <p class="muted" data-t="intro">
+        Enter the virtual MAC and PIN shown in your LUXARY TV app.
+      </p>
+
+      <form id="loginForm">
+
+        <div class="field">
+          <label for="mac" data-t="mac">Virtual MAC</label>
+          <input
+            id="mac"
+            placeholder="AA:BB:CC:DD:EE:FF"
+            autocomplete="off"
+            maxlength="17"
+            required
+          >
+        </div>
+
+        <div class="field">
+          <label for="pin" data-t="pin">Device PIN</label>
+          <input
+            id="pin"
+            type="password"
+            placeholder="••••••••"
+            inputmode="numeric"
+            minlength="8"
+            maxlength="8"
+            required
+          >
+        </div>
+
+        <button class="full-width" data-t="login">
+          Connect device
+        </button>
+
+      </form>
+
+      <div id="loginStatus" class="status" role="status"></div>
+
+      <div class="note" data-t="demologin">
+        Only registered devices can connect. PIN must be 8 digits.
+      </div>
+
+    </section>
+
+
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="hidden">
+
+      <div class="top dashboard-header">
+
+        <div class="dashboard-main">
+
+          <h1 data-t="dashboard">Device dashboard</h1>
+
+          <p class="muted" data-t="manageDevice">
+            Manage your connected device
+          </p>
+
+          <div class="device-info-row">
+
+            <div class="device-mac-box">
+              <span>MAC Address</span>
+              <strong id="deviceName">—</strong>
+            </div>
+
+            <div class="license-card">
+              <span data-t="trialLabel">FREE TRIAL</span>
+              <strong id="trialStatus">Checking...</strong>
+              <small id="trialExpiry">Expires: —</small>
+            </div>
+
+            <div class="license-card">
+              <span data-t="subscriptionLabel">SUBSCRIPTION</span>
+              <strong id="subscriptionStatus">Checking...</strong>
+              <small id="subscriptionExpiry">Paid until: —</small>
+            </div>
+
+          </div>
+
+        </div>
+
+        <button class="secondary" id="logout" data-t="logout">
+          Disconnect
+        </button>
+
+      </div>
+
+
+      <!-- ADD PLAYLIST -->
+      <section class="panel playlist-panel">
+
+        <h2 data-t="add">Add playlist</h2>
+
+        <form id="playlistForm">
+
+          <div class="field">
+            <label for="listName" data-t="name">
+              Playlist name
+            </label>
+            <input
+              id="listName"
+              maxlength="45"
+              placeholder="My TV"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="listUrl" data-t="url">
+              Playlist URL (HTTP / HTTPS)
+            </label>
+            <input
+              id="listUrl"
+              type="url"
+              placeholder="http:// or https://"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="epgUrl" data-t="epg">
+              EPG URL (optional)
+            </label>
+            <input
+              id="epgUrl"
+              type="url"
+              placeholder="http:// or https://"
+            >
+          </div>
+
+          <button class="full-width" data-t="save">
+            Add playlist
+          </button>
+
+        </form>
+
+        <div
+          id="playlistStatus"
+          class="status"
+          role="status"
+        ></div>
+
+        <div class="note" data-t="security">
+          Commands are encrypted in your browser and
+          stored temporarily until the device receives them.
+        </div>
+
+      </section>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <p id="foot"></p>
+    <p>
+      <a href="privacy.html" data-t="privacy">Privacy notice</a>
+      ·
+      <a href="terms.html" data-t="terms">Terms of use</a>
+    </p>
+  </footer>
+
+
+  <!-- LOGIN LOADING -->
+  <div
+    id="loginOverlay"
+    class="loading-overlay hidden"
+    role="status"
+    aria-live="polite"
+    aria-label="Signing in"
+  >
+    <div class="loading-card">
+      <div class="loading-spinner" aria-hidden="true"></div>
+      <h2 data-t="loggingIn">Connecting to LUXARY TV…</h2>
+      <p class="muted" data-t="loggingInDetail">
+        Verifying your device and PIN securely.
+      </p>
+    </div>
+  </div>
+
+
+  <div
+  id="toastContainer"
+  class="toast-container"
+  aria-live="polite"
+></div>
+
+  <!-- JAVASCRIPT FILES -->
+  <script src="translations.js"></script>
+  <script src="config.js"></script>
+  <script src="portal.js"></script>
+
+</body>
+</html>
